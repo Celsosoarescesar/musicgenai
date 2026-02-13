@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+  <title>Music Generation With Magenta.js - local model example</title>
+  <style>
+    * {
+      font-family: monospace;
+    }
+
+    canvas {
+      width: 100%;
+    }
+  </style>
+  <script src="chapter_08_example_08.js"></script>
+</head>
+<body>
+<div>
+  <h1>Music Generation With Magenta.js - local model example</h1>
+</div>
+<script
+    src="https://cdn.jsdelivr.net/npm/@magenta/music@1.12.0/dist/magentamusic.js"></script>
+<script>
+    // Initialize a locally trained DrumsRNN model from the local directory
+    // at: checkpoints/drums_rnn_dance_small
+    async function startLocalModel() {
+        const musicRnn = new mm.MusicRNN("http://0.0.0.0:8000/" +
+            "checkpoints/drums_rnn_dance_small");
+        await musicRnn.initialize();
+    }
+
+    // Calls the initialization of the local model
+    try {
+        Promise.all([startLocalModel()]);
+    } catch (error) {
+        console.error(error);
+    }
+</script>
+</body>
+</html>

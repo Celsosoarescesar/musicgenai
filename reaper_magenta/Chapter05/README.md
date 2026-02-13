@@ -1,0 +1,50 @@
+# Chapter 5 - Audio generation with NSynth and GANSynth
+
+[![Magenta v2.1.2](../docs/magenta-v2.1.2-badge.svg)](https://github.com/magenta/magenta/releases/tag/v2.1.2)
+
+This chapter will show audio generation. We'll first provide an overview of WaveNet, an existing model for audio generation, especially efficient in text to speech applications. In Magenta, we'll use NSynth, a Wavenet Autoencoder model, to generate small audio clips, that can serve as instruments for a backing MIDI score. NSynth also enables audio transformation like scaling, time stretching and interpolation. We'll also use GANSynth, a faster approach based on generative adversarial network (GAN).
+
+## Magenta Versioning
+
+```diff
+! This code doesn't correspond to the book's code
+```
+
+This branch shows the code for Magenta 2.1.2, which is the most recent version. For the book version, use the original [Magenta v1.1.7 branch](https://github.com/PacktPublishing/hands-on-music-generation-with-magenta/tree/master/Chapter05).
+
+## Utils
+
+There are some audio utilities in the [audio_utils.py](./audio_utils.py) file, useful for saving and loading the encodings (`save_encoding` and `load_encodings`), time stretching (`timestretch`) them and saving spectrogram plots (`save_spectrogram_plot` and `save_rainbowgram_plot`).
+
+## Sounds and MIDI
+
+We provide some sound samples and MIDI files for the examples.
+
+- [midi/cs1-1pre-short.mid](./midi/cs1-1pre-short.mid) (from http://www.jsbach.net/midi/cs1-1pre.mid")
+- [sounds/83249__zgump__bass-0205__crop.wav](./sounds/83249__zgump__bass-0205__crop.wav) (from https://freesound.org/people/zgump/sounds/83249/)
+- [sounds/160045__jorickhoofd__metal-hit-with-metal-bar-resonance__crop.wav](./sounds/160045__jorickhoofd__metal-hit-with-metal-bar-resonance__crop.wav) (from https://freesound.org/people/jorickhoofd/sounds/160045/)
+- [sounds/412017__skymary__cat-meow-short__crop.wav](./sounds/412017__skymary__cat-meow-short__crop.wav) (from https://freesound.org/people/skymary/sounds/412017/)
+- [sounds/427567__maria-mannone__flute__crop.wav](./sounds/427567__maria-mannone__flute__crop.wav) (from https://freesound.org/people/Maria_Mannone/sounds/427567/)
+
+## Code
+
+Before you start, follow the [installation instructions for Magenta 2.1.2](https://github.com/PacktPublishing/hands-on-music-generation-with-magenta/tree/master/Chapter01#installing-magenta).
+
+### [Example 1](chapter_05_example_01.py)
+
+This example shows how to use NSynth to interpolate between pairs of sounds.
+
+```bash
+# Runs the example, the output audio will be in the "output/nsynth" folder
+python chapter_05_example_01.py
+```
+
+### [Example 2](chapter_05_example_02.py)
+
+This example shows how to use GANSynth to generate intruments for a backing
+score from a MIDI file.
+
+```bash
+# Runs the example, the output audio will be in the "output/gansynth" folder
+python chapter_05_example_02.py
+```
